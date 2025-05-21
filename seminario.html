@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitación Seminario Planeta de los Simios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1c1c1c;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    /* Contenedor SVG para centrar */
+    #chimpanzee-container {
+      width: 300px;
+      height: 300px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.7));
+    }
+    /* Bocadillo cómic */
+    .comic-bubble {
+      position: relative;
+      background: #ffffff;
+      color: #000;
+      border-radius: 15px;
+      padding: 15px 20px;
+      max-width: 350px;
+      font-style: italic;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .comic-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-top-color: #ffffff;
+      border-bottom: 0;
+      border-left: 0;
+      margin-left: -10px;
+      margin-bottom: -20px;
+      filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+    }
+    button {
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      margin: 0.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .hidden {
+      display: none;
+    }
+    .invitation {
+      margin-top: 2rem;
+      background-color: #222;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #4caf50;
+      max-width: 400px;
+      text-align: left;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .invitation p {
+      margin: 8px 0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿Quieres descubrir la verdad detrás del Planeta de los Simios?</h1>
+
+  <div id="chimpanzee-container">
+    <!-- SVG Chimpancé simple -->
+    <svg viewBox="0 0 200 200" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dibujo de chimpancé">
+      <!-- Cabeza -->
+      <circle cx="100" cy="100" r="70" fill="#4b3a21" />
+      <!-- Cara clara -->
+      <ellipse cx="100" cy="130" rx="50" ry="40" fill="#d2b48c" />
+      <!-- Orejas -->
+      <circle cx="40" cy="90" r="20" fill="#4b3a21" />
+      <circle cx="160" cy="90" r="20" fill="#4b3a21" />
+      <circle cx="40" cy="90" r="12" fill="#d2b48c" />
+      <circle cx="160" cy="90" r="12" fill="#d2b48c" />
+      <!-- Ojos -->
+      <ellipse cx="70" cy="110" rx="15" ry="20" fill="#000" />
+      <ellipse cx="130" cy="110" rx="15" ry="20" fill="#000" />
+      <circle cx="70" cy="110" r="7" fill="#fff" />
+      <circle cx="130" cy="110" r="7" fill="#fff" />
+      <!-- Nariz -->
+      <ellipse cx="100" cy="140" rx="15" ry="8" fill="#5c4a2d" />
+      <!-- Boca -->
+      <path d="M 70 160 Q 100 170 130 160" stroke="#5c4a2d" stroke-width="6" fill="none" />
+    </svg>
+  </div>
+
+  <div id="comicMessage" class="comic-bubble hidden"></div>
+
+  <button id="talkButton">Habla con César</button>
+
+  <div id="choiceButtons" class="hidden">
+    <button id="continueBtn">Continuar</button>
+    <button id="abortBtn">Abortar</button>
+  </div>
+
+  <div id="invitation" class="invitation hidden">
+    <p><strong>Lugar:</strong> Auditorio Kenneth Morris</p>
+    <p><strong>Fecha:</strong> 4 de Junio 2025</p>
+    <p><strong>Hora:</strong> 11:15 am</p>
+  </div>
+
+<script>
+  const talkBtn = document.getElementById('talkButton');
+  const comicMessage = document.getElementById('comicMessage');
+  const choiceButtons = document.getElementById('choiceButtons');
+  const continueBtn = document.getElementById('continueBtn');
+  const abortBtn = document.getElementById('abortBtn');
+  const invitation = document.getElementById('invitation');
+
+  talkBtn.addEventListener('click', () => {
+    talkBtn.style.display = 'none';
+    comicMessage.textContent = 'Si recibes este mensaje fuiste elegido para presenciar un evento imperdible';
+    comicMessage.classList.remove('hidden');
+    choiceButtons.classList.remove('hidden');
+  });
+
+  continueBtn.addEventListener('click', () => {
+    choiceButtons.style.display = 'none';
+    comicMessage.textContent = 'Prepárate';
+    invitation.classList.remove('hidden');
+  });
+
+  abortBtn.addEventListener('click', () => {
+    comicMessage.textContent = 'Has abortado la misión. Hasta la próxima.';
+    choiceButtons.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
